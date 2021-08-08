@@ -5,6 +5,8 @@
 
 char cur_dir[200];
 char *get_cmd(char *c_cmd);
+char **history_book=NULL;
+
 int main(int argc, char *argv[])
 {
 	DIR *d;
@@ -20,6 +22,7 @@ int main(int argc, char *argv[])
 		printf("Bobby [%s] :>", cur_dir);
 		gets(cur_cmd);
 	
+		//system(cur_cmd);
 		if(strcmp(cur_cmd,"exit")==0)
 		{
 			return 0;
@@ -31,7 +34,7 @@ int main(int argc, char *argv[])
     		{
         		while ((dir = readdir(d)) != NULL)
         		{
-            		printf("%s\t\t\t%d\n", dir->d_name, dir->d_reclen);
+            		printf("%-20s - %6d\n", dir->d_name, dir->d_reclen);
         		}
         		closedir(d);
     		}
@@ -61,4 +64,8 @@ char *get_cmd(char *c_cmd)
 	}
 	cmd[i]='\0';
 	return cmd;
+}
+void add_history(char *c_cmd)
+{
+	
 }
